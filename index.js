@@ -1,5 +1,5 @@
 var doubler = function(a, b) {
-  return a + a + b + b;
+  return (a + b)*2;
 };
 
 console.assert(doubler(4,2) === 12);
