@@ -20,3 +20,15 @@ function m1() { return 1; }
 
 console.assert(doubler(m4, m2) === 12);
 console.assert(doubler(m1, m3) === 8);
+
+function objectsEqual() {
+  return a.t + a.z === b.t + b.z
+}
+
+var a = { z: 42 , t: 7 }, b = { t: 7, z: 42 }
+
+objectsEqual(doubler({x1: 1, x2: 4}), {x1: 2, x2: 8});
+objectsEqual(doubler({x1: -4, x2: 0}), {x1: -8, x2: 0});
+
+console.assert(objectsEqual(a, b));
+console.assert(objectsEqual(b, a));
