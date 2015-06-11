@@ -1,10 +1,16 @@
 var doubler = function(a, b) {
+
   if (typeof a === "object") {
     for (var objKey in a) {
       a[objKey] = a[objKey] * 2;
     }
     return a;
   }
+
+  if (typeof a === "function" && typeof b === "function") {
+    return a.call() + a.call() + b.call() + b.call();
+  }
+
   return a + a + b + b;
 };
 
@@ -20,8 +26,8 @@ function m4() { return 4; }
 function m2() { return 2; }
 function m1() { return 1; }
 
-console.assert(doubler(m4(), m2()) === 12);
-console.assert(doubler(m1(), m3()) === 8);
+console.assert(doubler(m4, m2) === 12);
+console.assert(doubler(m1, m3) === 8);
 
 function objectsEqual(a, b) {
   for (var objKey in a) {
