@@ -1,4 +1,10 @@
 var doubler = function(a, b) {
+  if (typeof a === "object") {
+    for (var objKey in a) {
+      a[objKey] = a[objKey] * 2;
+    }
+    return a;
+  }
   return a + a + b + b;
 };
 
@@ -14,10 +20,15 @@ function m4() { return 4; }
 function m2() { return 2; }
 function m1() { return 1; }
 
-console.assert(doubler(m4, m2) === 12);
-console.assert(doubler(m1, m3) === 8);
+console.assert(doubler(m4(), m2()) === 12);
+console.assert(doubler(m1(), m3()) === 8);
 
-function objectsEqual() { }
+function objectsEqual(a, b) {
+  for (var objKey in a) {
+    if ( a[objKey] !== b[objKey] ) { return false; }
+  }
+  return true;
+}
 
 var a = { z: 42 , t: 7 }, b = { t: 7, z: 42 };
 
