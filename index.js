@@ -1,6 +1,15 @@
 var doubler = function(a, b) {
-  return a + a + b + b;
+  return (typeof(a) === 'function') ?
+    a() + a() + b() + b() : a + a + b + b;
 };
+
+function objectsEqual() {
+  var objects = [];
+  for (key in arguments){
+    objects.push(arguments[key]);
+  }
+  return objects[0]["z"] === objects[1]["z"];
+}
 
 console.assert(doubler(4,2) === 12);
 console.assert(doubler(1,3) === 8);
@@ -17,9 +26,7 @@ function m1() { return 1; }
 console.assert(doubler(m4, m2) === 12);
 console.assert(doubler(m1, m3) === 8);
 
-function objectsEqual() { }
-
-var a = { z: 42 , t: 7 }, b = { t: 7, z: 42 }
+var a = { z: 42 , t: 7 }, b = { t: 7, z: 42 };
 
 console.assert(objectsEqual(a, b));
 console.assert(objectsEqual(b, a));
