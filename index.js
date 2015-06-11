@@ -1,5 +1,10 @@
 var doubler = function(a, b) {
-  return 2 * a + 2 * b;
+  if(typeof a === 'string' && typeof b === 'string'){
+    return a + a + b + b;
+  }
+  if(typeof a === 'number' && typeof b === 'number'){
+    return 2 * a + 2 * b;
+  }
 }
 
 console.assert(doubler(4,2) === 12);
