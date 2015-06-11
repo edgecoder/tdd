@@ -19,7 +19,7 @@ console.assert(doubler(m1, m3) === 8);
 
 function objectsEqual() { }
 
-var a = { z: 42 , t: 7 }, b = { t: 7, z: 42 }
+var a = { z: 42 , t: 7 }, b = { t: 7, z: 42 };
 
 console.assert(objectsEqual(a, b));
 console.assert(objectsEqual(b, a));
