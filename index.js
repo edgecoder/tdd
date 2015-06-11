@@ -1,6 +1,14 @@
-var doubler = function(a, b) {
-  return (typeof(a) === 'function') ?
-    a() + a() + b() + b() : a + a + b + b;
+var doubler = function() {
+  if (typeof(arguments[0]) === 'function') {
+    return arguments[0]() + arguments[0]() + arguments[1]() + arguments[1]();
+  } else if (typeof(arguments[0]) === 'object') {
+    var double = {}
+    for (key in arguments[0]){
+      double[key] = (arguments[0][key] + arguments[0][key]);
+    }
+    return double;
+  }
+  return arguments[0] + arguments[0] + arguments[1] + arguments[1];
 };
 
 function objectsEqual() {
@@ -8,7 +16,16 @@ function objectsEqual() {
   for (key in arguments){
     objects.push(arguments[key]);
   }
-  return objects[0]["z"] === objects[1]["z"];
+  var isTrue = true;
+
+  for (key in objects[0]){
+    for (var i = 1; i < objects.length; i++){
+      if (objects[0][key] !== objects[i][key]){
+        isTrue = false;
+      }
+    }
+  }
+  return isTrue;
 }
 
 console.assert(doubler(4,2) === 12);
