@@ -16,16 +16,13 @@ function objectsEqual() {
   for (key in arguments){
     objects.push(arguments[key]);
   }
-  var isTrue = true;
 
-  for (key in objects[0]){
-    for (var i = 1; i < objects.length; i++){
-      if (objects[0][key] !== objects[i][key]){
-        isTrue = false;
-      }
+  for (var i = 1; i < objects.length; i++){
+    if (objects[0][key] !== objects[i][key]){
+      return false;
     }
   }
-  return isTrue;
+  return true;
 }
 
 console.assert(doubler(4,2) === 12);
