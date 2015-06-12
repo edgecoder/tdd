@@ -1,5 +1,17 @@
 var doubler = function(a, b) {
-  return (a + b)*2;
+  if(typeof(a) === 'function') {
+      a = a();
+  };
+  if(typeof(b) === 'function'){
+    b = b();
+  };
+  if(typeof(a) === 'Object'){
+    a = Objects.keys(a);
+  }
+  if(typeof(b) === 'Object'){
+    b = Object.Keys(b);
+  }
+  return a + a + b + b;
 };
 
 console.assert(doubler(4,2) === 12);
@@ -8,7 +20,6 @@ console.assert(doubler(-1,3) === 4);
 
 console.assert(doubler("a", "b") === "aabb");
 console.assert(doubler("coding", "rocks") === "codingcodingrocksrocks");
-
 function m3() { return 3; }
 function m4() { return 4; }
 function m2() { return 2; }
@@ -17,7 +28,14 @@ function m1() { return 1; }
 console.assert(doubler(m4, m2) === 12);
 console.assert(doubler(m1, m3) === 8);
 
-function objectsEqual() { }
+function objectsEqual(a, b) { 
+
+ var aKeys = Object.keys(a);
+ var bKeys = Object.keys(b);
+ return aKeys.every(function(e, i){
+      return aKeys[e]===bKeys[e];
+  });
+};
 
 var a = { z: 42 , t: 7 }, b = { t: 7, z: 42 }
 
