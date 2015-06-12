@@ -58,3 +58,11 @@ console.assert(objectsEqual(b, a));
 
 objectsEqual(doubler({x1: 1, x2: 4}), {x1: 2, x2: 8});
 objectsEqual(doubler({x1: -4, x2: 0}), {x1: -8, x2: 0});
+
+
+
+/// testing 
+
+/// testing x222
+
+
