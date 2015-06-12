@@ -1,7 +1,7 @@
 // Stanley Javascript Challenge
 
 var mergeArraySort = function() {
-
+  
 }
 
 // given any number of arrays, sort all the numbers in the arrays
