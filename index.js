@@ -1,21 +1,40 @@
+function objectsEqual() {
+  var a = arguments[0];
+  var b = arguments[1];
+  var equal = true;
+  Object.keys(a).forEach(function(key){
+    if(equal)
+      equal = a[key] === b[key] ? true : false;
+  });
+  return equal;
+}
+
 var doubler = function(a, b) {
-  if (typeof a === 'string') {
-    return a + a + b + b;
-  } else if (typeof a === 'function') {
-    return ( a() + b() )*2;
-  } else if (typeof a === 'object') {
-    var keys = Object.keys(a);
-    var aValues = [];
-    for (var key in a) {
-      aValues.push(a[key]);
-    }
-    a[keys[0]] = aValues[0]*2;
-    a[keys[1]] = aValues[1]*2;
-    return a;
-  } else {
-    return (a + b) * 2;
+  if(areFunctions(a, b)){
+    return a() * 2 + b() * 2;
   }
+  if(isObject(a)){
+    Object.keys(a).forEach(function(acc, key){
+      a[key] += a[key];
+    });
+    return a;
+  }
+  return a + a + b + b;
 };
+
+function isObject(a){
+  return is(a, 'object');
+}
+
+function areFunctions(a, b){
+  return is(a, 'function') && is(b, 'function');
+}
+
+function is(a, type){
+  return typeof a === type;
+}
+
+// Do not change below this line
 
 console.assert(doubler(4,2) === 12);
 console.assert(doubler(1,3) === 8);
@@ -31,26 +50,6 @@ function m1() { return 1; }
 
 console.assert(doubler(m4, m2) === 12);
 console.assert(doubler(m1, m3) === 8);
-
-function objectsEqual() {
-  var keysArr = [];
-  for (var i = 0; i < arguments.length; i++) {
-    var arr = Object.keys(arguments[i]);
-    keysArr.push(arr);
-  }
-  var arrOneSort = keysArr[0].sort();
-  var arrTwoSort = keysArr[1].sort();
-  
-  if (arrOneSort[0] === arrTwoSort[0]) {
-    for (var j = 0; j < arrOneSort.length; j++) {
-      if (arguments[0][arrOneSort[j]] === arguments[1][arrOneSort[j]]) {
-        return true;
-      }
-    }
-  } else {
-    return false;
-  }
-}
 
 var a = { z: 42 , t: 7 }, b = { t: 7, z: 42 }
 
