@@ -1,4 +1,4 @@
-function power (a, b, c) {
+function fixer(a, b, c) {
 
 }
 
