@@ -1,6 +1,29 @@
-var doubler = function(a, b) {
-  return a + a + b + b;
+var doubler = function() {
+  if (typeof(arguments[0]) === 'function') {
+    return arguments[0]() + arguments[0]() + arguments[1]() + arguments[1]();
+  } else if (typeof(arguments[0]) === 'object') {
+    var double = {}
+    for (key in arguments[0]){
+      double[key] = (arguments[0][key] + arguments[0][key]);
+    }
+    return double;
+  }
+  return arguments[0] + arguments[0] + arguments[1] + arguments[1];
 };
+
+function objectsEqual() {
+  var objects = [];
+  for (key in arguments){
+    objects.push(arguments[key]);
+  }
+
+  for (var i = 1; i < objects.length; i++){
+    if (objects[0][key] !== objects[i][key]){
+      return false;
+    }
+  }
+  return true;
+}
 
 console.assert(doubler(4,2) === 12);
 console.assert(doubler(1,3) === 8);
@@ -17,9 +40,7 @@ function m1() { return 1; }
 console.assert(doubler(m4, m2) === 12);
 console.assert(doubler(m1, m3) === 8);
 
-function objectsEqual() { }
-
-var a = { z: 42 , t: 7 }, b = { t: 7, z: 42 }
+var a = { z: 42 , t: 7 }, b = { t: 7, z: 42 };
 
 console.assert(objectsEqual(a, b));
 console.assert(objectsEqual(b, a));
