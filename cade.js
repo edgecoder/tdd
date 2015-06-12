@@ -1,4 +1,4 @@
-var operate(){}
+var operate = function(){}
 
 console.assert(operate('+')(2,2) === 4);
 console.assert(operate('-')(5,4) === 1);
